@@ -22,23 +22,31 @@ const FetchMate = () => {
     e.preventDefault();
 
     if (formData.url === "") {
-      setData("");
-    } else if (formData.request === "get") {
+      setData([]);
+    } else {
       try {
-        const response = await axios.get(formData.url);
-        setData(response);
+        let response;
+        if (formData.request === "get") {
+          response = await axios.get(formData.url);
+        } else if (formData.request === "post") {
+          response = await axios.post(formData.url, JSON.parse(formData.body));
+          console.log(response);
+        } else if (formData.request === "delete") {
+          response = await axios.delete(formData.url);
+          console.log(response);
+        } else if (formData.request === "put") {
+          response = await axios.put(formData.url, JSON.parse(formData.body));
+          console.log(response);
+        } else if (formData.request === "patch") {
+          response = await axios.patch(formData.url, JSON.parse(formData.body));
+          console.log(response);
+        }
+        setData(response.data);
       } catch (error) {
         console.log(error);
-      }
-    } else if (formData.request === "post") {
-      try {
-        const response = await axios.post(formData.url, formData.body);
-        setData(response);
-      } catch (error) {
-        console.log(error);
+        setData([]);
       }
     }
-    console.log(formData.body);
   };
 
   return (
