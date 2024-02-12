@@ -1,6 +1,6 @@
 import axios from "axios";
 import resposeImg from "../assets/response.png";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 const FetchMate = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +9,6 @@ const FetchMate = () => {
     body: "",
   });
   const [data, setData] = useState([]);
-  let jsonText = `{"name" : "Abc" , "age" : 23 }`;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,15 +21,24 @@ const FetchMate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.request === "get") {
+    if (formData.url === "") {
+      setData("");
+    } else if (formData.request === "get") {
       try {
-        const response = await axios.get(`${formData.url}`);
+        const response = await axios.get(formData.url);
+        setData(response);
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (formData.request === "post") {
+      try {
+        const response = await axios.post(formData.url, formData.body);
         setData(response);
       } catch (error) {
         console.log(error);
       }
     }
-    console.log(formData);
+    console.log(formData.body);
   };
 
   return (
@@ -42,9 +50,7 @@ const FetchMate = () => {
               name="request"
               id="requestType"
               value={formData.request}
-              onChange={() => {
-                handleChange(event);
-              }}
+              onChange={handleChange}
             >
               <option value="get">GET</option>
               <option value="post">POST</option>
@@ -67,10 +73,10 @@ const FetchMate = () => {
 
       <div className="body">
         <textarea
-          className="body"
           value={formData.body}
           onChange={handleChange}
           name="body"
+          placeholder="Enter Body in JSON format POST request only"
           id=""
           rows="10"
         ></textarea>
@@ -78,7 +84,9 @@ const FetchMate = () => {
       <div className="response">
         <pre>
           {data.length === 0 ? (
-            <img src={resposeImg} id="responseImg" />
+            <div className="emptyResponse">
+              <img src={resposeImg} id="responseImg" />
+            </div>
           ) : (
             <pre>{JSON.stringify(data, null, 2)}</pre>
           )}

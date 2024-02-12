@@ -9,15 +9,17 @@
   width: 100%;
   height: 100vh;
   flex-direction: column;
+  background-color: #14213d;
 }
 .container {
   display: flex;
   align-items: center;
   /* width: 100%; */
   height: 100vh;
-  background-color: tan;
+  background-color: white;
   flex-direction: column;
-  width: 320px;
+  width: 310px;
+  border: 2px solid black;
 }
 .parent {
   display: flex;
@@ -26,8 +28,11 @@
   gap: 5px;
   width: 100%;
   height: fit-content;
-  padding: 10px 3px 10px 3px;
+  padding: 10px 1px 10px 1px;
   background-color: blueviolet;
+  border: 2px solid black;
+  border-top: none;
+  border-bottom: none;
 }
 form {
   display: flex;
@@ -63,14 +68,77 @@ button {
 }
 .body {
   width: 100%;
+  border: 2px solid black;
+  border-right: none;
+  border-left: none;
+}
+textarea {
+  width: 93%;
+  border: none;
+  outline: none;
+  padding: 10px;
 }
 .response {
   width: 100%;
   min-height: 20vh;
-  background-color: lightblue;
   overflow: auto;
 }
-
-#responseImg {
+.emptyResponse {
   width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+#responseImg {
+  width: 90%;
+}
+
+@media only screen and (min-width: 425px) {
+  .container {
+    width: 420px;
+  }
+
+  form {
+    width: 100%;
+    justify-content: center;
+  }
+
+  select {
+    font-size: 18px;
+  }
+
+  input {
+    width: 240px;
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 18px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 760px;
+  }
+
+  form {
+    gap: 10px;
+  }
+
+  select {
+    font-size: 18px;
+  }
+
+  input {
+    width: 540px;
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #responseImg {
+    width: 45%;
+  }
 }
