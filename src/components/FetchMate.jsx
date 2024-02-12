@@ -1,6 +1,8 @@
 import axios from "axios";
 import resposeImg from "../assets/response.png";
+import icon from "../assets/jsonIcon.png";
 import { useState } from "react";
+import { jsonrepair } from "jsonrepair";
 
 const FetchMate = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +18,24 @@ const FetchMate = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleRepair = () => {
+    console.log("in repair");
+    try {
+      const repairedJson = jsonrepair(formData.body);
+      setFormData((prevData) => ({
+        ...prevData,
+        body: repairedJson,
+      }));
+      console.log("repaired");
+    } catch (error) {
+      console.error("Error repairing JSON:", error);
+      setFormData((prevData) => ({
+        ...prevData,
+        body: formData.body,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -89,11 +109,19 @@ const FetchMate = () => {
           rows="10"
         ></textarea>
       </div>
+      <div className="validClass">
+        <img
+          src={icon}
+          id="jsonIcon"
+          alt="icon"
+          onClick={() => handleRepair()}
+        />
+      </div>
       <div className="response">
         <pre>
           {data.length === 0 ? (
             <div className="emptyResponse">
-              <img src={resposeImg} id="responseImg" />
+              <img src={resposeImg} id="responseImg" alt="response" />
             </div>
           ) : (
             <pre>{JSON.stringify(data, null, 2)}</pre>
