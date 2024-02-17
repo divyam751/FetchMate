@@ -1,5 +1,5 @@
 import axios from "axios";
-import resposeImg from "../assets/response.png";
+import resposeImg from "../assets/res.png";
 import icon from "../assets/jsonIcon.png";
 import { useState } from "react";
 import { jsonrepair } from "jsonrepair";

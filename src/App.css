@@ -9,7 +9,9 @@
   width: 100%;
   min-height: 100vh;
   flex-direction: column;
-  background-color: #14213d;
+  background-color: #f0f8ff;
+
+  /* background-color: #14213d; */
 }
 .container {
   display: flex;
@@ -29,7 +31,7 @@
   width: 100%;
   height: fit-content;
   padding: 10px 1px 10px 1px;
-  background-color: blueviolet;
+  background-color: #4682b4;
   border: 2px solid black;
   border-top: none;
   border-bottom: none;
@@ -39,6 +41,8 @@ form {
   align-items: center;
   width: fit-content;
   gap: 2px;
+  border-radius: 50px;
+  /* background-color: orange; */
 }
 .urlTab {
   width: fit-content;
@@ -46,25 +50,31 @@ form {
   display: flex;
   align-items: center;
   background-color: white;
+  border-radius: 50px;
 }
 select {
   border: none;
   padding: 3px 0px 3px 0px;
   outline: none;
   font-size: 15px;
+  /* background-color: teal; */
+  border-radius: 50px;
+  padding-left: 5px;
 }
 
 input {
   padding: 5px;
   outline: none;
   border: none;
+  border-radius: 50px;
 }
 
 button {
   padding: 5px 10px 5px 10px;
   border-radius: 10px;
-  background-color: green;
+  background-color: brown;
   color: white;
+  cursor: pointer;
 }
 .body {
   width: 100%;
